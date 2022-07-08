@@ -1,4 +1,7 @@
 <?php
+// Autochargement des classes pour les modules installés avec Composer
+require_once 'vendor/autoload.php';
+
 // Inclure les fichiers de config
 include('config/bd.cfg.php');
 

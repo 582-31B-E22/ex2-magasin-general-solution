@@ -1,0 +1,16 @@
+<ul>
+    <!-- Affichage dynamique des produits -->
+    {% for prd in produits %}                
+        <li>
+            <!-- Remarquez l'URL associée à chaque produit -->
+            <a href="produit/un/{{prd.id}}/{{(prd.nom~'-'~prd.desc_courte)|slug|lower}}">
+                <img src="ressources/images/produits/{{prd.fichier}}" alt="{{prd.nom}}">
+                <div class="info">
+                    <p class="nom">{{prd.nom}}</p>
+                    <p class="desc">{{prd.desc_courte}}</p>
+                    <p class="prix">{{prd.prix}} $</p>
+                </div>
+            </a>
+        </li>
+    {% endfor %}
+</ul>

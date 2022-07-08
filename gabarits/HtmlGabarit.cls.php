@@ -1,15 +1,24 @@
 <?php
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+use Twig\Extra\String\StringExtension;
+
 class HtmlGabarit 
 {
     // Les variables utiles pour générer la vue dynamiquement
     protected $variables = array();
     protected $module;
     protected $action;
+    private $twig;
 
     function __construct($module, $action)
     {
         $this->module = $module;
-        $this->action = $action;  
+        $this->action = $action;
+        // Configurer Twig
+        $chargeur = new FilesystemLoader('vues/');
+        $this->twig = new Environment($chargeur, ['cache'=>false]);
+        $this->twig->addExtension(new StringExtension());
     }
 
     /**
@@ -36,13 +45,9 @@ class HtmlGabarit
      */
     public function genererVue() 
     {
-        // Déballer les variables dans la page
-        extract($this->variables);  
-        // Inclure l'entête
-        include("vues/entete.inc.php");
-        // Inclure la partie de la page correspondant aux module et action requis
-        include("vues/$this->module.$this->action.php");
-        // Inclure le pied de page
-        include("vues/pied2page.inc.php");
+        $vue = $this->twig->load("$this->module.$this->action.twig");
+        $vue->display($this->variables);
+        // Ou d'un seul coup : 
+        //$this->twig->display("$this->module.$this->action.twig", $this->variables);
     }
 }

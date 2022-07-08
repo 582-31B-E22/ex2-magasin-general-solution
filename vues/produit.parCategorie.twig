@@ -1,0 +1,15 @@
+{% extends "base.twig" %}
+
+{% block contenu_principal %}
+<div id="conteneur-principal" class="page-produit">
+	<aside>
+		<nav>
+			{% include "_categories-liste.inc.twig" %}
+		</nav>
+	</aside>
+	<section class="contenu">
+		<h2>Produits disponibles par catégorie : &laquo; {{nomCatActive}} &raquo;</h2>
+		{% include("_produits-liste.inc.twig") %}
+	</section>
+</div>
+{% endblock contenu_principal %}

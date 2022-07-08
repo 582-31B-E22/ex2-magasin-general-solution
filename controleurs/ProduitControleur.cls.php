@@ -48,11 +48,16 @@ class ProduitControleur extends Controleur
         // On récupère l'identifiant de la catégorie demandée dans le premier 
         // paramètre envoyé dans l'URL (module/action/param1/param2/.../paramN)
         $idCategorie = $params[0];
-        $this->gabarit->affecter('categories', $this->modele->categories());
+        $categories = $this->modele->categories();
+        $this->gabarit->affecter('categories', $categories);
         $this->gabarit->affecter('produits', $this->modele->parCategorie($idCategorie));
         // On a besoin de l'identifiant de la catégorie demandée dans la 'vue',
         // donc, on l'injecte à l'aide de la méthode affecter()
         $this->gabarit->affecter('idCatActive', $idCategorie);
+        $nomCatActive = array_reduce($categories, 
+            fn($acc, $curr)  => ($curr->id == $idCategorie) ? $curr->nom : $acc
+        , '');
+        $this->gabarit->affecter('nomCatActive', $nomCatActive);
     }
 }
 ?>

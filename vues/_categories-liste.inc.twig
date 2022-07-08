@@ -1,0 +1,7 @@
+<ul>
+    <!-- Affichage dynamique des catégories -->
+    {% for cat in categories %}
+        <!-- Remarquez l'URL associée à chaque catégorie -->
+        <li><a class="{{cat.id==idCatActive ? 'actif': ''}}" href="produit/parCategorie/{{cat.id}}/{{cat.nom|slug|lower}}">{{cat.nom}}</a></li>
+    {% endfor %}
+</ul>
