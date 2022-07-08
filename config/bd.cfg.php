@@ -7,3 +7,7 @@ const BD_HOTE = 'localhost';
 const BD_UTIL = 'mg20220630'; // Remarquez que je n'utilise plus 'root'
 const BD_MDP = '582-31B-pwa'; // Remarquez que j'ai un mot de passe non-trivial
 const BD_NOM = 'magasingeneral';
+
+// Configuration Twig
+const TWIG_CACHE = false;
+// const TWIG_CACHE = 'cache/';

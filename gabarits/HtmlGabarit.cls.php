@@ -17,7 +17,7 @@ class HtmlGabarit
         $this->action = $action;
         // Configurer Twig
         $chargeur = new FilesystemLoader('vues/');
-        $this->twig = new Environment($chargeur, ['cache'=>false]);
+        $this->twig = new Environment($chargeur, ['cache'=>TWIG_CACHE]);
         $this->twig->addExtension(new StringExtension());
     }
 
